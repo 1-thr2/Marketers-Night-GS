@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>마케터의 밤_최종안</title>
+    <style>
+        /* 기본 리셋 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+            background: #0d0d0d;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* 컨테이너 폭 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        /* 공통 섹션 스타일 */
+        .section {
+            padding: 8rem 0;
+            position: relative;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            color: #00ff9b;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        /* 히어로 섹션 */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,255,155,0.05) 0%, transparent 50%);
+            animation: heroPulse 10s ease-in-out infinite;
+        }
+        @keyframes heroPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.3; }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+        .hero h1 {
+            font-size: 4.5rem;
+            color: #00ff9b;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.4rem;
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: #00ff9b;
+            color: #0d0d0d;
+            padding: 1rem 3rem;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,255,155,0.2);
+        }
+        /* "왜 참여해야 할까요?" 섹션 */
+        .why-section {
+            background: #0d0d0d;
+            text-align: center;
+            padding: 6rem 0;
+        }
+        .why-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        /* 핵심 데이터 (data-grid) */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: -4rem auto 0;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        .data-card {
+            background: #1c1c1c;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .data-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,255,155,0.1);
+        }
+        .data-number {
+            font-size: 3rem;
+            color: #00ff9b;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .data-desc {
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+        /* 참석자 구성 (attendee-section) */
+        .attendee-section {
+            background: #111;
+            padding: 8rem 0;
+        }
+        .attendee-section .section-title {
+            margin-bottom: 4rem;
+        }
+        .attendee-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .attendee-card {
+            background: #1c1c1c;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease;
+        }
+        .attendee-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,255,155,0.1);
+        }
+        .attendee-percent {
+            font-size: 3rem;
+            color: #00ff9b;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .attendee-type {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .attendee-examples {
+            color: #888;
+            line-height: 1.6;
+        }
+        /* 행사 흐름 (timeline) */
+        .flow-section {
+            background: #0d0d0d;
+            padding: 8rem 0;
+            position: relative;
+        }
+        .flow-section .section-title {
+            margin-bottom: 4rem;
+        }
+        .flow-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+        .timeline {
+            position: relative;
+            padding: 3rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: calc(100% - 100px);
+            background: linear-gradient(to bottom, rgba(0,255,155,0.5) 0%, rgba(0,255,155,0.2) 100%);
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6rem;
+            position: relative;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-content {
+            width: 45%;
+            background: #1c1c1c;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,255,155,0.1);
+        }
+        /* marker (원형 점) */
+        .timeline-marker {
+            width: 16px;
+            height: 16px;
+            background: #00ff9b;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        /* 최근 연사 소개 (상단은 기존 유지, 하단 [참고코드] 적용) */
+        .speakers-section {
+            background: #111;
+            padding: 8rem 0;
+        }
+        .speakers-section .section-title {
+            margin-bottom: 4rem;
+        }
+        .speakers-section p {
+            color: #ccc;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .speaker-card {
+            background: #1c1c1c;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        .speaker-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,255,155,0.1);
+        }
+        .speaker-logo {
+            width: 60px;
+            height: 60px;
+            background: #262626;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #00ff9b;
+            margin: 0 auto 1.5rem auto;
+        }
+        .speaker-card h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .speaker-card p {
+            color: #888;
+            line-height: 1.6;
+        }
+        /* 최근 연사 소개 - 텍스트 수정 적용 */
+        .speakers-section .section-title::after {
+            content: "";
+            display: block;
+            margin: 1rem auto 0;
+        }
+        .recent-description {
+            text-align: center;
+            color: #ccc;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        /* 우리가 약속드리는 핵심 베네핏 (3개 카드) */
+        .benefits-section {
+            background: #0d0d0d;
+            padding: 8rem 0;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .benefit-card {
+            background: #1c1c1c;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease;
+        }
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,255,155,0.1);
+        }
+        .benefit-number {
+            font-size: 1.5rem;
+            color: #00ff9b;
+            margin-bottom: 1rem;
+        }
+        .benefit-title {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .benefit-desc {
+            color: #888;
+            line-height: 1.6;
+        }
+        /* 아래 [참고코드] 섹션: 추가로 드리는 특별한 기회 ~ 문의하기 버튼 */
+        .extra-section {
+            margin-top: 4rem;
+            padding: 4rem 2rem;
+            background: #0d0d0d;
+        }
+        .extra-section .extras {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .extra-item {
+            background: #1c1c1c;
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #333;
+        }
+        .extra-item h4 {
+            color: #00ff9b;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        .extra-item p {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        .final-cta {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: #1a1a1a;
+        }
+        .final-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #00ff9b;
+        }
+        .final-cta p {
+            color: #ccc;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            line-height: 1.6;
+        }
+        .final-cta a.cta-btn {
+            background: #00ff9b;
+            color: #0d0d0d;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #000;
+            color: #444;
+            font-size: 0.9rem;
+        }
+        /* 반응형 */
+        @media (max-width: 1024px) {
+            .data-grid,
+            .attendee-grid,
+            .speakers-grid,
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .hero p { font-size: 1.1rem; }
+            .timeline::before { left: 2rem; }
+            .timeline-item {
+                flex-direction: column !important;
+                margin-left: 4rem;
+            }
+            .timeline-content {
+                width: 100%;
+            }
+            .timeline-marker {
+                left: 2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .data-grid,
+            .attendee-grid,
+            .speakers-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                마케터의 밤<br>
+                <span style="font-size: 0.7em;">마케팅의 새로운 흐름이 시작되는 밤</span>
+            </h1>
+            <p>
+                깊이 있는 인사이트와 함께 만드는 특별한 파트너십,<br>
+                이제 우리가 함께 만들어갈 시간입니다
+            </p>
+            <a href="#" class="cta-btn">지금 바로 문의하기</a>
+        </div>
+    </section>
+
+    <!-- "왜 참여해야 할까요?" 섹션 -->
+    <section class="why-section">
+        <div class="why-content">
+            <h2 class="section-title">"왜 참여해야 할까요?"</h2>
+            <p style="color: #ccc; font-size: 1.2rem; line-height: 1.8;">
+                마케터의 밤은 단순한 네트워킹 자리가 아닙니다.<br>
+                “지금 바로 적용할 수 있는” 실행 아이디어와 생생한 현장 사례들이 오가며,<br>
+                곧바로 협업으로 이어질 소중한 인연이 탄생하는 곳이죠.
+            </p>
+        </div>
+    </section>
+
+    <!-- 핵심 데이터 (data-grid) -->
+    <div class="data-grid">
+        <div class="data-card">
+            <div class="data-number">1000+</div>
+            <div class="data-desc">연간 누적<br>참석자 수</div>
+        </div>
+        <div class="data-card">
+            <div class="data-number">70%</div>
+            <div class="data-desc">실무 결정권자<br>비율</div>
+        </div>
+        <div class="data-card">
+            <div class="data-number">30%</div>
+            <div class="data-desc">평균 협업<br>성사율</div>
+        </div>
+        <div class="data-card">
+            <div class="data-number">25%</div>
+            <div class="data-desc">협업 후 평균<br>매출 상승률</div>
+        </div>
+    </div>
+
+    <!-- 참석자 구성 -->
+    <section class="attendee-section">
+        <h2 class="section-title">다양한 참석자 구성</h2>
+        <div class="attendee-grid">
+            <div class="attendee-card">
+                <div class="attendee-percent">50%</div>
+                <div class="attendee-type">광고주</div>
+                <div class="attendee-examples">현대카드, CJ<br>무신사, KB금융</div>
+            </div>
+            <div class="attendee-card">
+                <div class="attendee-percent">25%</div>
+                <div class="attendee-type">매체사</div>
+                <div class="attendee-examples">Google, Meta<br>Criteo, 네이버</div>
+            </div>
+            <div class="attendee-card">
+                <div class="attendee-percent">15%</div>
+                <div class="attendee-type">대행사</div>
+                <div class="attendee-examples">제일기획<br>이노레드</div>
+            </div>
+            <div class="attendee-card">
+                <div class="attendee-percent">10%</div>
+                <div class="attendee-type">솔루션사</div>
+                <div class="attendee-examples">애드테크<br>마케팅 툴</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 행사 흐름 (timeline) -->
+    <section class="flow-section">
+        <h2 class="section-title">행사 기획 &amp; 운영 흐름</h2>
+        <div class="flow-container">
+            <div class="timeline">
+                <!-- 첫번째 아이템 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 style="color: #00ff9b; margin-bottom: 1rem;">네트워킹 & 협업 세션</h3>
+                        <p style="color: #ccc;">
+                            소그룹 네트워킹으로 심도 있는 대화를 나누고,<br>
+                            관심 분야별 협업 아이디어를 구체화합니다.
+                        </p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+                <!-- 두번째 아이템 (row-reverse) -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 style="color: #00ff9b; margin-bottom: 1rem;">주제 선정 &amp; 연사 확정</h3>
+                        <p style="color: #ccc;">
+                            매달 트렌디한 마케팅 이슈를 선정,<br>
+                            현업 전문가/실무자를 연사로 초빙합니다.
+                        </p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+                <!-- 세번째 아이템 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 style="color: #00ff9b; margin-bottom: 1rem;">브랜드 스토리텔링</h3>
+                        <p style="color: #ccc;">
+                            현장의 특별한 순간과 협업 스토리를 SNS·언론 등<br>
+                            다양한 채널로 소개하여 브랜드 가치를 높여드립니다
+                        </p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 최근 연사 소개 (텍스트 수정 적용) -->
+    <section class="speakers-section">
+        <div class="container">
+            <h2 class="section-title">최근 연사 소개</h2>
+            <p>
+                “마케터의 밤”에서는 홈플러스, 무신사 등 다양한 기업의 실무진이 연사로 참여해<br>
+                실전 경험을 공유해 왔습니다. 각 산업 분야별 노하우를 한자리에서 배울 수 있는 기회가 될 거예요.
+            </p>
+            <div class="speakers-grid">
+                <div class="speaker-card">
+                    <div class="speaker-logo">C</div>
+                    <h3 class="benefit-title">Criteo</h3>
+                    <p>퍼포먼스 마케팅의 미래<br>실전 리타겟팅 전략 공유</p>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-logo">J</div>
+                    <h3 class="benefit-title">잡코리아</h3>
+                    <p>채용 마케팅 및 HR 테크<br>혁신 전략 공유</p>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-logo">P</div>
+                    <h3 class="benefit-title">핀터레스트</h3>
+                    <p>D2C 브랜드의 성장기<br>MZ세대 마케팅 전략</p>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-logo">A</div>
+                    <h3 class="benefit-title">아모레퍼시픽</h3>
+                    <p>디지털 전환 성공사례<br>뷰티테크 혁신 전략</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 우리가 약속드리는 핵심 베네핏 (3개 카드) -->
+    <section class="benefits-section">
+        <h2 class="section-title">우리가 약속드리는 핵심 베네핏</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-number">01</div>
+                <div class="benefit-title">최신 트렌드 확보</div>
+                <div class="benefit-desc">
+                    현장에서 가장 뜨거운 마케팅 트렌드와 실무 경험을 얻어가세요.<br>
+                    강연보다 더 리얼한 생생한 노하우입니다.
+                </div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-number">02</div>
+                <div class="benefit-title">즉석 파트너십</div>
+                <div class="benefit-desc">
+                    뜻이 맞는 기업과 곧바로 협업을 논의할 수 있습니다.<br>
+                    빠른 결정이 곧 빠른 매출로 이어지죠.
+                </div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-number">03</div>
+                <div class="benefit-title">브랜드 인지도 상승</div>
+                <div class="benefit-desc">
+                    행사 현장과 SNS, 뉴스레터 노출로 귀사의 브랜드가<br>
+                    마케터 커뮤니티 전반에 깊이 각인됩니다.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 추가로 드리는 특별한 기회 (참고코드 스타일 적용, 비율은 기존 코드와 믹스) -->
+    <section class="extra-section">
+        <div class="container">
+            <h2 class="section-title">추가로 드리는 특별한 기회</h2>
+            <div class="extras">
+                <div class="extra-item">
+                    <h4>맥스서밋 연사 우선 기회</h4>
+                    <p>국내 최대 규모의 마케팅 컨퍼런스 ‘맥스서밋’에 연사로 참여할 우선 기회를 제공합니다. 이를 통해 업계 주요 인사들에게 귀사의 전문성과 성과를 어필해 보세요.</p>
+                </div>
+                <div class="extra-item">
+                    <h4>인사이드 발행 (기사·사진자료)</h4>
+                    <p>마케터들의 인사이트를 공유하는 ‘인사이드’ 매체에 협업 사례와 연사 사진 자료가 게재됩니다. 자연스러운 브랜드 PR과 함께 업계 전문가로 자리매김할 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 후기 섹션 (4개 박스) -->
+    <section class="testimonial-section">
+        <div class="container">
+            <h2 class="section-title">실제 참가자들의 목소리</h2>
+            <div class="testimonial-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div class="testimonial-box" style="background: #1c1c1c; border-radius: 10px; padding: 2rem; border: 1px solid #333; position: relative;">
+                    <p style="font-size: 1rem; color: #ccc; font-style: italic; margin-bottom: 1rem;">
+                        "업계 트렌드에 대해 현업자들과 이야기를 나눌 수 있어서 좋았습니다. 특히 AI 마케팅 관련해서 각자의 경험을 공유하면서 새로운 인사이트를 얻을 수 있었죠."
+                    </p>
+                    <small style="display: block; text-align: right; color: #888;">- P사 마케팅 팀장</small>
+                </div>
+                <div class="testimonial-box" style="background: #1c1c1c; border-radius: 10px; padding: 2rem; border: 1px solid #333; position: relative;">
+                    <p style="font-size: 1rem; color: #ccc; font-style: italic; margin-bottom: 1rem;">
+                        "처음에는 단순한 네트워킹 모임일 거라 생각했는데, 실제로 협업까지 이어질 수 있는 파트너도 만나고 의미 있는 시간이었습니다. 다음 모임이 기대되네요."
+                    </p>
+                    <small style="display: block; text-align: right; color: #888;">- B사 브랜드 매니저</small>
+                </div>
+                <div class="testimonial-box" style="background: #1c1c1c; border-radius: 10px; padding: 2rem; border: 1px solid #333; position: relative;">
+                    <p style="font-size: 1rem; color: #ccc; font-style: italic; margin-bottom: 1rem;">
+                        "다른 네트워킹 행사와 달리 현업 마케터들과 깊이 있는 대화를 나눌 수 있어서 좋았어요. 비슷한 고민을 가진 분들과 이야기를 나누며 새로운 관점도 얻었습니다."
+                    </p>
+                    <small style="display: block; text-align: right; color: #888;">- M사 디지털 마케터</small>
+                </div>
+                <div class="testimonial-box" style="background: #1c1c1c; border-radius: 10px; padding: 2rem; border: 1px solid #333; position: relative;">
+                    <p style="font-size: 1rem; color: #ccc; font-style: italic; margin-bottom: 1rem;">
+                        "실무에서 겪는 어려움을 허심탄회하게 나누고 서로의 해결방법도 공유할 수 있어서 유익했습니다. 이론이 아닌 실제 경험에 기반한 이야기라 더욱 도움이 됐어요."
+                    </p>
+                    <small style="display: block; text-align: right; color: #888;">- S사 그로스 매니저</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 최종 CTA 섹션 (텍스트 수정: '부디' 삭제) -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>마케터의 밤, 함께할 준비 되셨나요?</h2>
+            <p>이제 아이디어만 있으면 곧바로 실행할 파트너를 만날 수 있습니다. 이 기회를 놓치지 마세요.</p>
+            <a href="#" class="cta-btn">문의하기</a>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>© 2035 Mobidays. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
