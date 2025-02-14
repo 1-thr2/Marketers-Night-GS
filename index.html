@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8" />
-    <title>마케터의 밤_최종안</title>
+    <title>마케터의 밤</title>
     <style>
         /* 기본 리셋 */
         * {
@@ -249,7 +249,7 @@
         .timeline-item:nth-child(even) {
             flex-direction: row-reverse;
         }
-        /* 최근 연사 소개 (상단은 기존 유지, 하단 [참고코드] 적용) */
+        /* 최근 연사 소개 */
         .speakers-section {
             background: #111;
             padding: 8rem 0;
@@ -306,11 +306,6 @@
             line-height: 1.6;
         }
         /* 최근 연사 소개 - 텍스트 수정 적용 */
-        .speakers-section .section-title::after {
-            content: "";
-            display: block;
-            margin: 1rem auto 0;
-        }
         .recent-description {
             text-align: center;
             color: #ccc;
@@ -356,7 +351,7 @@
             color: #888;
             line-height: 1.6;
         }
-        /* 아래 [참고코드] 섹션: 추가로 드리는 특별한 기회 ~ 문의하기 버튼 */
+        /* 추가로 드리는 특별한 기회 및 최종 CTA (참고코드 스타일 적용) */
         .extra-section {
             margin-top: 4rem;
             padding: 4rem 2rem;
@@ -524,18 +519,7 @@
         <h2 class="section-title">행사 기획 &amp; 운영 흐름</h2>
         <div class="flow-container">
             <div class="timeline">
-                <!-- 첫번째 아이템 -->
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 style="color: #00ff9b; margin-bottom: 1rem;">네트워킹 & 협업 세션</h3>
-                        <p style="color: #ccc;">
-                            소그룹 네트워킹으로 심도 있는 대화를 나누고,<br>
-                            관심 분야별 협업 아이디어를 구체화합니다.
-                        </p>
-                    </div>
-                    <div class="timeline-marker"></div>
-                </div>
-                <!-- 두번째 아이템 (row-reverse) -->
+                <!-- 첫번째 아이템: 주제 선정 & 연사 확정 (강연) -->
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3 style="color: #00ff9b; margin-bottom: 1rem;">주제 선정 &amp; 연사 확정</h3>
@@ -546,7 +530,18 @@
                     </div>
                     <div class="timeline-marker"></div>
                 </div>
-                <!-- 세번째 아이템 -->
+                <!-- 두번째 아이템: 네트워킹 & 협업 세션 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 style="color: #00ff9b; margin-bottom: 1rem;">네트워킹 &amp; 협업 세션</h3>
+                        <p style="color: #ccc;">
+                            소그룹 네트워킹으로 심도 있는 대화를 나누고,<br>
+                            관심 분야별 협업 아이디어를 구체화합니다.
+                        </p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+                <!-- 세번째 아이템: 브랜드 스토리텔링 -->
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3 style="color: #00ff9b; margin-bottom: 1rem;">브랜드 스토리텔링</h3>
@@ -561,7 +556,7 @@
         </div>
     </section>
 
-    <!-- 최근 연사 소개 (텍스트 수정 적용) -->
+    <!-- 최근 연사 소개 -->
     <section class="speakers-section">
         <div class="container">
             <h2 class="section-title">최근 연사 소개</h2>
@@ -594,7 +589,7 @@
         </div>
     </section>
 
-    <!-- 우리가 약속드리는 핵심 베네핏 (3개 카드) -->
+    <!-- 우리가 약속드리는 핵심 베네핏 -->
     <section class="benefits-section">
         <h2 class="section-title">우리가 약속드리는 핵심 베네핏</h2>
         <div class="benefits-grid">
@@ -625,7 +620,7 @@
         </div>
     </section>
 
-    <!-- 추가로 드리는 특별한 기회 (참고코드 스타일 적용, 비율은 기존 코드와 믹스) -->
+    <!-- 추가로 드리는 특별한 기회 -->
     <section class="extra-section">
         <div class="container">
             <h2 class="section-title">추가로 드리는 특별한 기회</h2>
@@ -635,17 +630,17 @@
                     <p>국내 최대 규모의 마케팅 컨퍼런스 ‘맥스서밋’에 연사로 참여할 우선 기회를 제공합니다. 이를 통해 업계 주요 인사들에게 귀사의 전문성과 성과를 어필해 보세요.</p>
                 </div>
                 <div class="extra-item">
-                    <h4>인사이드 발행 (기사·사진자료)</h4>
-                    <p>마케터들의 인사이트를 공유하는 ‘인사이드’ 매체에 협업 사례와 연사 사진 자료가 게재됩니다. 자연스러운 브랜드 PR과 함께 업계 전문가로 자리매김할 수 있습니다.</p>
+                    <h4>모비인사이드 발행 (기사·사진자료)</h4>
+                    <p>마케터들의 인사이트를 공유하는 ‘모비인사이드’ 매체에 협업 사례와 연사 사진 자료가 게재됩니다. 자연스러운 브랜드 PR과 함께 업계 전문가로 자리매김할 수 있습니다.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 후기 섹션 (4개 박스) -->
+    <!-- 실제 참석자들의 목소리 -->
     <section class="testimonial-section">
         <div class="container">
-            <h2 class="section-title">실제 참가자들의 목소리</h2>
+            <h2 class="section-title">실제 참석자들의 목소리</h2>
             <div class="testimonial-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
                 <div class="testimonial-box" style="background: #1c1c1c; border-radius: 10px; padding: 2rem; border: 1px solid #333; position: relative;">
                     <p style="font-size: 1rem; color: #ccc; font-style: italic; margin-bottom: 1rem;">
@@ -675,7 +670,7 @@
         </div>
     </section>
 
-    <!-- 최종 CTA 섹션 (텍스트 수정: '부디' 삭제) -->
+    <!-- 최종 CTA 섹션 -->
     <section class="final-cta">
         <div class="container">
             <h2>마케터의 밤, 함께할 준비 되셨나요?</h2>
